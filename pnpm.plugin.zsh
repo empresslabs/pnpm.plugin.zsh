@@ -67,7 +67,7 @@ fi
 
 {
   # `pnpm completion` is only available from 9.0.0 onwards
-  if zstyle -t ':completion:plugins:pnpm' legacy-completion || \
+  if zstyle -t ':empresslabs:pnpm:completion' legacy-completion || \
     ! is-at-least 9.0.0 "$(command pnpm --version)"; then
         command cp "${0:h}/completions/_pnpm" "$ZSH_CACHE_DIR/completions/_pnpm"
       else
