@@ -44,3 +44,33 @@ alias pnset='pnpm setup'
 alias pnpub='pnpm publish'
 alias pnsv='pnpm server'
 alias pnx='pn dlx'
+
+# Standardized $0 handling
+# https://zdharma-continuum.github.io/Zsh-100-Commits-Club/Zsh-Plugin-Standard.html
+0="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
+0="${${(M)0:#/*}:-$PWD/$0}"
+
+# For zsh plugin managers that don't set $ZSH_CACHE_DIR for oh-my-zsh compatibility, like zi
+# This is temporary, since I didn't see how it really works
+if [[ -z "$ZSH_CACHE_DIR" ]]; then
+  mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions"
+  ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+fi
+
+# If the completion file doesn't exist yet, we need to autoload it and
+# bind it to `pnpm`. Otherwise, compinit will have already done that.
+if [[ ! -f "$ZSH_CACHE_DIR/completions/_pnpm" ]]; then
+  typeset -g -A _comps
+  autoload -Uz _pnpm
+  _comps[pnpm]=_pnpm
+fi
+
+{
+  # `pnpm completion` is only available from 9.0.0 onwards
+  if zstyle -t ':completion:plugins:pnpm' legacy-completion || \
+    ! is-at-least 9.0.0 "$(command pnpm --version)"; then
+        command cp "${0:h}/completions/_pnpm" "$ZSH_CACHE_DIR/completions/_pnpm"
+      else
+        command pnpm completion zsh | tee "$ZSH_CACHE_DIR/completions/_pnpm" > /dev/null
+  fi
+} &|
