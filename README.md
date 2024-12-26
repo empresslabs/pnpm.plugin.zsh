@@ -1,28 +1,68 @@
-# pnpm.plugin.zsh
+<p align="center">
+  <a href="#gh-dark-mode-only" target="_blank" rel="noopener noreferrer">
+    <img src=".github/assets/night.svg" alt="pnpm.plugin.zsh">
+  </a>
 
-This plugin adds many useful aliases for common _`pnpm`_ commands.
+  <a href="#gh-light-mode-only" target="_blank" rel="noopener noreferrer">
+    <img src=".github/assets/day.svg" alt="pnpm.plugin.zsh">
+  </a>
+</p>
 
-This plugin has `shell completion` for _`pnpm`_.
+Plugin for aliases and completions for `pnpm` package manager.
 
-To use it, add _`pnpm`_ to the plugins array in your `.zshrc` file:
+## Installation
 
-## Install
+#### [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
-```console
-# ZPlug
-zplug "baliestri/pnpm.plugin.zsh"
-
-# ZI
-zi ice lucid blockf atpull'zi creinstall -q .'
-zi light baliestri/pnpm.plugin.zsh
+```shell
+git clone https://github.com/empresslabs/pnpm.plugin.zsh.git $ZSH_CUSTOM/plugins/pnpm
 ```
+
+```shell
+~/.zshrc
+plugins=(... pnpm)
+```
+
+#### [zinit](https://github.com/zdharma-continuum/zinit)
+
+```shell
+zinit light empresslabs/pnpm.plugin.zsh
+```
+
+#### [zi](https://github.com/z-shell/zi)
+
+```shell
+zi light empresslabs/pnpm.plugin.zsh
+```
+
+#### [zgenom](https://github.com/jandamm/zgenom)
+
+```shell
+zgenom load empresslabs/pnpm.plugin.zsh
+```
+
+#### [zplug](https://github.com/zplug/zplug)
+
+```shell
+zplug empresslabs/pnpm.plugin.zsh
+```
+
+## Settings
+
+#### Use plugin-defined completions or pnpm's built-in completions
+
+```shell
+zstyle ":completion:plugins:pnpm" legacy-completion yes
+```
+
+Add this line to your `~/.zshrc` file to use the plugin-defined completions. If you prefer to use pnpm's built-in completions, remove this line.
 
 ## Aliases
 
 | Alias | Command                              | Description                                                                   |
 | ----- | ------------------------------------ | ----------------------------------------------------------------------------- |
 | pn    | `pnpm`                               | The _`pnpm`_ command                                                          |
-| pnx   | `pnpm dlx`                               | Fetch a package, load it and run command                                      |
+| pnx   | `pnpm dlx`                           | Fetch a package, load it and run command                                      |
 | pna   | `pnpm add`                           | Install a package in dependencies (`package.json`)                            |
 | pnad  | `pnpm add --save-dev`                | Install a package in devDependencies (`package.json`)                         |
 | pnap  | `pnpm add --save-peer`               | Install a package in peerDependencies (`package.json`)                        |
@@ -54,3 +94,7 @@ zi light baliestri/pnpm.plugin.zsh
 | pnsv  | `pnpm server`                        | Manage a _`pnpm`_ store server                                                |
 | pnpub | `pnpm publish`                       | Publishes a package to the registry                                           |
 | pnset | `pnpm setup`                         | Sets up pnpm                                                                  |
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
