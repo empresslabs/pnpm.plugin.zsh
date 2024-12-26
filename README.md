@@ -52,7 +52,7 @@ zplug empresslabs/pnpm.plugin.zsh
 #### Use plugin-defined completions or pnpm's built-in completions
 
 ```shell
-zstyle ":completion:plugins:pnpm" legacy-completion yes
+zstyle ":empresslabs:pnpm:completion" legacy-completion yes
 ```
 
 Add this line to your `~/.zshrc` file to use the plugin-defined completions. If you prefer to use pnpm's built-in completions, remove this line.
